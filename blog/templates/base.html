@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>{% block head_title %}welcome to my blog{% endblock %} </title>
+    <link id="style" rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<header>
+    <h1>{% block title %} django girls {% endblock %}</h1>
+</header>
+<section>
+    <div id="container">
+
+        <ul>
+            <li><button class="button">Home</button></li>
+            <li><button class="button">About</button></li>
+            <li><button class="button">contact</button></li>
+        </ul>
+    </div>
+    <div>
+        <img id="image" src="{% static 'img/django-logo.jpg' %}"/>
+    </div>
+
+    {% block content %}
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+        <fieldset>
+            <legend>{{ post.title }}</legend>
+            <article id="article">{{ post.body }}
+                <time id="time">{{ post.posted }}</time>
+            </article>
+            <br>
+        </fieldset>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <p>There are no post</p>
+        {% endif %}
+    {% endblock %}
+    
+</section>
+
+<footer id="footer">
+    <fieldset>
+        <ul>
+            <label>Email: </label><strong>yola@djangogirls.org</strong><br>
+            <label>phone:</label><strong>08140099331</strong><br>
+            <strong>copyright&copysr;djangogirls Yola.All rights reserved Rahma</strong>
+        </ul>
+    </fieldset>
+</footer>
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>
